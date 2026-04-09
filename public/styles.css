@@ -1,0 +1,242 @@
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* Flex colors */
+  --f-dark:    #0d3b6e;
+  --f-mid:     #1565c0;
+  --f-bright:  #1e88e5;
+  --f-article: #b0bec5;
+
+  /* Grid colors */
+  --g-a:  #0f3460;
+  --g-b:  #1a4a7a;
+  --g-c:  #e94560;
+  --g-d:  #c73652;
+  --g-e:  #a82843;
+
+  --gap:    8px;
+  --radius: 10px;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: #e8edf2;
+  padding: 40px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  color: #0d3b6e;
+  margin-bottom: 4px;
+}
+
+.section-sub {
+  font-size: 0.72rem;
+  color: #607d8b;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+
+.block {
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  padding: 14px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  letter-spacing: .08em;
+  transition: filter .18s;
+}
+
+.block:hover {
+  filter: brightness(1.13);
+}
+
+.tag {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  opacity: .65;
+  margin-top: 4px;
+  text-align: center;
+}
+
+
+.flex-layout {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+  max-width: 860px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.flex-layout header {
+  background: var(--f-dark);
+  min-height: 60px;
+}
+
+.flex-middle {
+  display: flex;
+  flex-direction: row;
+  gap: var(--gap);
+}
+
+.flex-layout nav {
+  background: var(--f-bright);
+  flex: 0 0 150px;
+  min-height: 220px;
+  order: 1;
+}
+
+.flex-layout article {
+  background: var(--f-article);
+  flex: 1;
+  min-height: 220px;
+  color: #37474f;
+  order: 2;
+}
+
+.flex-layout aside {
+  background: var(--f-mid);
+  flex: 0 0 150px;
+  min-height: 220px;
+  order: 3;
+}
+
+.flex-layout footer {
+  background: var(--f-bright);
+  min-height: 52px;
+}
+
+/* Flex – móvil */
+@media (max-width: 600px) {
+  .flex-middle {
+    flex-direction: column;
+  }
+
+  .flex-layout article {
+    order: 1;
+    min-height: 160px;
+  }
+
+  .flex-layout nav {
+    order: 2;
+    flex: none;
+    min-height: 70px;
+  }
+
+  .flex-layout aside {
+    order: 3;
+    flex: none;
+    min-height: 70px;
+  }
+}
+
+
+.grid-wrapper {
+  max-width: 860px;
+  width: 100%;
+  margin: 0 auto;
+  background: #16213e;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, .25);
+}
+
+.grid-header {
+  background: #0d1b35;
+  padding: 14px 24px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.3rem;
+  letter-spacing: .12em;
+  color: var(--g-c);
+  border-bottom: 2px solid var(--g-c);
+}
+
+.grid-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    "a  b  b"
+    "c  d  e";
+  gap: var(--gap);
+  padding: var(--gap);
+}
+
+.grid-layout .cell-a { grid-area: a; }
+.grid-layout .cell-b { grid-area: b; }
+.grid-layout .cell-c { grid-area: c; }
+.grid-layout .cell-d { grid-area: d; }
+.grid-layout .cell-e { grid-area: e; }
+
+
+.grid-row2 {
+  display: contents;
+}
+
+.cell {
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 140px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  letter-spacing: .08em;
+  color: rgba(255, 255, 255, .92);
+  transition: transform .18s, filter .18s;
+}
+
+.cell:hover {
+  transform: scale(1.02);
+  filter: brightness(1.15);
+}
+
+.cell-a { background: var(--g-a); }
+.cell-b { background: var(--g-b); }
+.cell-c { background: var(--g-c); }
+.cell-d { background: var(--g-d); }
+.cell-e { background: var(--g-e); }
+
+/* Grid – móvil */
+@media (max-width: 560px) {
+  .grid-layout {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "b  b"
+      "c  d"
+      "e  e";
+  }
+
+  .cell-a {
+    display: none;
+  }
+
+  .cell-b {
+    min-height: 200px;
+    font-size: 4rem;
+  }
+
+  .cell {
+    min-height: 85px;
+  }
+}
